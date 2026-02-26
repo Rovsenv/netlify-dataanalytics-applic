@@ -1,5 +1,5 @@
 /* ============================================================
-   GRAVITY PARTICLE SYSTEM — Datatek Academy
+   GRAVITY PARTICLE SYSTEM — Data Analytics Hub
    • Particles drift slowly and attract each other
    • Glowing coloured connection lines between nearby particles
    • NO mouse / touch interaction — pure ambient animation
