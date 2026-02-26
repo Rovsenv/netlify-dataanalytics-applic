@@ -229,49 +229,73 @@ body::after {
   gap: 0.5rem;
 }
 
-/* Theme toggle — header top-right */
+/* Theme toggle — ON/OFF switch style */
 .theme-toggle {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  padding: 0.38rem 0.85rem;
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border-strong);
-  background: var(--surface);
-  color: var(--text);
-  font-size: 0.82rem;
-  font-weight: 600;
-  font-family: 'Inter', sans-serif;
+  position: relative;
+  display: inline-block;
+  width: 52px;
+  height: 28px;
   cursor: pointer;
-  letter-spacing: -0.01em;
-  transition: background var(--transition), border-color var(--transition),
-    box-shadow var(--transition), transform var(--transition);
-  white-space: nowrap;
 }
 
-.theme-toggle:hover {
-  background: var(--surface-hover);
+.theme-toggle-checkbox {
+  opacity: 0;
+  width: 0;
+  height: 0;
+  position: absolute;
+}
+
+.theme-toggle-slider {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--surface);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-full);
+  transition: background var(--transition), border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.theme-toggle-slider::before {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 20px;
+  left: 3px;
+  bottom: 3px;
+  background: var(--text);
+  border-radius: 50%;
+  transition: transform var(--transition), background var(--transition);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.theme-toggle:hover .theme-toggle-slider {
   border-color: var(--accent);
   box-shadow: 0 0 0 3px var(--accent-soft);
-  transform: translateY(-1px);
 }
 
-.theme-toggle .theme-icon {
-  font-size: 1rem;
-  line-height: 1;
-  display: flex;
-  align-items: center;
+/* Checked state (Light mode ON) */
+.theme-toggle-checkbox:checked + .theme-toggle-slider {
+  background: var(--accent);
+  border-color: var(--accent);
 }
 
-/* In light mode the toggle gets a subtle indigo tint */
-[data-theme="light"] .theme-toggle {
-  background: rgba(99, 102, 241, 0.06);
-  border-color: rgba(99, 102, 241, 0.25);
-  color: #4338ca;
+.theme-toggle-checkbox:checked + .theme-toggle-slider::before {
+  transform: translateX(24px);
+  background: #ffffff;
 }
 
-[data-theme="light"] .theme-toggle:hover {
-  background: rgba(99, 102, 241, 0.12);
+/* Light mode adjustments */
+[data-theme="light"] .theme-toggle-slider {
+  background: rgba(99, 102, 241, 0.15);
+  border-color: rgba(99, 102, 241, 0.3);
+}
+
+[data-theme="light"] .theme-toggle-checkbox:checked + .theme-toggle-slider {
+  background: #4f46e5;
+  border-color: #4f46e5;
 }
 
 /* ============================
@@ -1028,26 +1052,6 @@ body::after {
   gap: 1rem;
   font-size: 0.82rem;
   color: var(--text-dim);
-}
-
-.theme-toggle {
-  border-radius: var(--radius-full);
-  border: 1px solid var(--border);
-  padding: 0.45rem 0.9rem;
-  background: var(--surface);
-  color: var(--text-muted);
-  cursor: pointer;
-  font-size: 0.82rem;
-  font-family: 'Inter', sans-serif;
-  transition: all var(--transition);
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-}
-
-.theme-toggle:hover {
-  background: var(--surface-hover);
-  border-color: var(--border-strong);
 }
 
 /* ============================

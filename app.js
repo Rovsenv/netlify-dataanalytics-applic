@@ -68,7 +68,7 @@ contactForm?.addEventListener('submit', (e) => {
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 
-// ── Theme toggle ────────────────────────────────────────
+// ── Theme toggle (ON/OFF switch) ────────────────────────
 const themeToggle = document.getElementById('themeToggle');
 const root = document.documentElement;
 
@@ -76,23 +76,17 @@ function setTheme(theme) {
   root.setAttribute('data-theme', theme);
   localStorage.setItem('theme', theme);
   if (themeToggle) {
-    const icon = themeToggle.querySelector('.theme-icon');
-    const label = themeToggle.querySelector('.theme-label');
-    if (theme === 'light') {
-      // Currently light → button offers to switch to dark (Gecə)
-      if (icon) icon.textContent = '🌙';
-      if (label) label.textContent = 'Gecə';
-    } else {
-      // Currently dark → button offers to switch to light (Gündüz)
-      if (icon) icon.textContent = '☀️';
-      if (label) label.textContent = 'Gündüz';
-    }
+    themeToggle.checked = (theme === 'light');
   }
 }
 
-setTheme(localStorage.getItem('theme') || 'dark');
-themeToggle?.addEventListener('click', () => {
-  setTheme(root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+// Initialize theme from localStorage
+const savedTheme = localStorage.getItem('theme') || 'dark';
+setTheme(savedTheme);
+
+// Toggle theme on checkbox change
+themeToggle?.addEventListener('change', () => {
+  setTheme(themeToggle.checked ? 'light' : 'dark');
 });
 
 
