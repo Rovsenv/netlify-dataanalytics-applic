@@ -107,7 +107,7 @@ document.querySelectorAll('.fade-in').forEach((el) => observer.observe(el));
 // ══════════════════════════════════════════════════════
 //   CHATBOT  (fixed bottom-right, always visible)
 // ══════════════════════════════════════════════════════
-const N8N_WEBHOOK_URL = 'https://n8n.datatek.tech/webhook/datatek-chat';
+const N8N_WEBHOOK_URL = 'https://n8n.datatek.tech/webhook/dataanalyticschatbot';
 
 const chatLauncher = document.getElementById('chatLauncher');
 const chatWidget = document.getElementById('chatWidget');
